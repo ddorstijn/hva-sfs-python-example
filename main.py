@@ -78,10 +78,11 @@ def get_resolved_delay(ns_api, longest_delay):
 def find_busiest_station(ns_api, stations):
     departed_counter = Counter()
 
-    for _ in range(10):
+    for _ in range(6):
         for station in stations:
             for departure in ns_api.get_departures(station["id"]):
                 departed_counter.update(departure['stations'])
+        print(departed_counter.most_common(3))
         sleep(60)
     
     print(departed_counter.most_common(3))

@@ -6,7 +6,7 @@
     In this project there is an API-token included, but because of rate-limits or unauthorized access this can break easily.
     If that is the case, make sure you request your own (free) API-token, which you manage in your account on the website.
 
-    Rate limit should be 5,000 requests per hour per OAuth token
+    Rate limit should be 5,000 requests per hour per OAuth token.
 """
 
 import requests
