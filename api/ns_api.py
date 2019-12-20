@@ -14,8 +14,8 @@ import json
 import datetime
 
 class NSApi:
-    API_PATH = "https://gateway.apiportal.ns.nl/public-reisinformatie/api/v2/"
-    API_TOKEN = "ecb91cb499714bffa3a6697597d89e32"
+    API_PATH = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/"
+    API_TOKEN = "f35b89f1c38b447d860a4a8032f0a7a0"
 
     def __init__(self):
         pass
@@ -62,8 +62,11 @@ class NSApi:
             return None
 
         data_json = json.loads(request.content)
-
+        
         for json_disruptions in data_json['payload']:
+            if json_disruptions['type'] == 'prio_3':
+                continue
+                
             disruption_data = {
                 'title': json_disruptions['titel'],
                 'impact': json_disruptions['verstoring']['impact'] if 'impact' in json_disruptions['verstoring'] else None,
