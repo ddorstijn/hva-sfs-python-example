@@ -92,8 +92,12 @@ class NSApi:
             print("Error with NS API:")
             print(request.content)
             return None
-
-        data_json = json.loads(request.content)
+        
+        # Remove any extra bits of data after json object
+        request_string = request.content.decode("utf-8")
+        request_string = request_string.rsplit('}', 1)[0]
+        request_string += "}"
+        data_json = json.loads(request_string)
 
         for json_departures in data_json['payload']['departures']:
             planned_timestamp = int(datetime.datetime.strptime(json_departures['plannedDateTime'], "%Y-%m-%dT%H:%M:%S%z").timestamp())
