@@ -32,19 +32,19 @@ def main():
     # Get a list of trainstations
     stations = ns_api.get_train_stations()
 
-    # # Assignment 1
-    # get_disrupted(ns_api, stations)
+    # Assignment 1
+    get_disrupted(ns_api, stations)
 
-    # # Assignment 2
-    # longest_delay = get_longest_delay(ns_api, stations)
-    # print("The train highest delay is at station {} with {} seconds delay"
-    #             .format(longest_delay['station'], longest_delay['delay']))
+    # Assignment 2
+    longest_delay = get_longest_delay(ns_api, stations)
+    print("The train highest delay is at station {} with {} seconds delay"
+                .format(longest_delay['station'], longest_delay['delay']))
 
-    # # Assignment 3
-    # get_resolved_delay(ns_api, longest_delay)
+    # Assignment 3
+    get_resolved_delay(ns_api, longest_delay)
 
-    # # Assignment 4 
-    # find_busiest_station(ns_api, stations)
+    # Assignment 4 
+    find_busiest_station(ns_api, stations)
 
     # Assignment 5
     draw_stations_map(stations)
@@ -74,8 +74,6 @@ def get_longest_delay(ns_api, stations):
                 longest_delay['delay'] = departure['delay_seconds']
                 longest_delay['station'] = station['name']
                 longest_delay['stations'] = departure['stations']
-                if len(longest_delay['stations']) > 0: 
-                    return longest_delay
        
     return longest_delay
 
@@ -92,7 +90,7 @@ def find_busiest_station(ns_api, stations):
     departed_counter = Counter()
 
     # Check 6 times in total
-    for _ in range(1):
+    for _ in range(6):
         print("Looking through stations")
         for station in stations:
             for departure in ns_api.get_departures(station["id"]):
